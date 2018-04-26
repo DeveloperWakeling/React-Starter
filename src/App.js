@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Button } from 'material-ui';
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
         </header>
         <p className="App-intro">
           Testing Build Deploy
+          <Button color="primary" variant="raised">Test</Button>
         </p>
       </div>
     );
