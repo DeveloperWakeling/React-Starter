@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './App.css';
 import { Button, Grid, AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText } from 'material-ui';
 import { withStyles } from '@material-ui/core';
@@ -23,7 +24,7 @@ class App extends Component {
       display: 'flex',
     },
     appBar: {
-      zIndex: theme.zIndex.drawer + 1,
+      flexGrow: 1
     },
     drawerPaper: {
       position: 'relative',
@@ -42,27 +43,23 @@ class App extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <AppBar position="absolute" style={{ flexGrow: 1 }} className={classes.appBar}>
+        <AppBar position="static" className={classes.appBar}>
           <Toolbar>
             <Typography style={{ flex: 1, textAlign: 'center' }} variant="title" color="inherit">Yearbook as a Service</Typography>
             <Button color="inherit">Login</Button>
           </Toolbar>
         </AppBar>
-        {/* <Drawer variant="permanent" classes={{ paper: classes.paper }}>
-          <div className={classes.toolbar} />
-          <List>
-            <ListItem>Hello</ListItem>
-          </List>
-        </Drawer> */}
-        <div>
-          <div className={classes.toolbar} />
-          <Grid container spacing={16}>
-
+        <Grid container spacing={16}>
+          <Grid item xs={12}>
+            <h2>Does this work</h2>
           </Grid>
-        </div>
+        </Grid>
       </div>
     );
   }
+}
+App.propTypes = {
+  classes: PropTypes.object.isRequired
 }
 
 export default withStyles(this.styles)(App);
