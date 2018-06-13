@@ -4,6 +4,14 @@ import './index.css';
 import 'typeface-roboto';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: "#ff4400"
+        }
+    } 
+});
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<MuiThemeProvider theme={theme}><App /></MuiThemeProvider>, document.getElementById('root'));
 registerServiceWorker();
