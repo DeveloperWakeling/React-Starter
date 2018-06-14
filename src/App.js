@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './App.css';
-import { Button, Grid, AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText } from 'material-ui';
+import { Button, AppBar, Toolbar, Typography } from 'material-ui';
 import { withStyles } from '@material-ui/core';
-
-
+import NavDrawer from './components/navDrawer';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
+    this.state = { openDrawer: false }
   }
-
   drawerWidth = 200;
 
   styles = theme => ({
@@ -26,9 +25,9 @@ class App extends Component {
     appBar: {
       flexGrow: 1
     },
-    drawerPaper: {
-      position: 'relative',
-      width: this.drawerWidth,
+    toolbarTitle: {
+      flex: 1,
+      textAlign: 'center'
     },
     content: {
       flexGrow: 1,
@@ -36,24 +35,27 @@ class App extends Component {
       padding: theme.spacing.unit * 3,
       minWidth: 0, // So the Typography noWrap works
     },
-    toolbar: theme.mixins.toolbar,
+    toolbar: theme.mixins.toolbar
   });
+
+  openDrawer = () => {
+    this.setState({ toggleDrawer: !this.state.toggleDrawer });
+  }
+
 
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <AppBar position="static" className={classes.appBar}>
+        <AppBar position="absolute" className={classes.appBar} style={{zIndex: 9999}}>
           <Toolbar>
             <Typography style={{ flex: 1, textAlign: 'center' }} variant="title" color="inherit">Yearbook as a Service</Typography>
-            <Button color="inherit">Login</Button>
+            <Button color="inherit" onClick={this.openDrawer}>Login</Button>
           </Toolbar>
         </AppBar>
-        <Grid container spacing={16}>
-          <Grid item xs={12}>
-            <h2>Does this work</h2>
-          </Grid>
-        </Grid>
+        {/* Drawer For Navigation */}
+        <NavDrawer toggleDrawer={this.state.toggleDrawer} />
+        {/* Main Content Here */}
       </div>
     );
   }
